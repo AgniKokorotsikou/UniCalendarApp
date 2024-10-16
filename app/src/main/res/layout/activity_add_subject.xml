@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Subjects for the Day"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+
+    <CheckBox
+        android:id="@+id/checkbox_math"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Math" />
+
+    <CheckBox
+        android:id="@+id/checkbox_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History" />
+
+    <CheckBox
+        android:id="@+id/checkbox_physics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Physics" />
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

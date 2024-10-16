@@ -4,31 +4,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
-
+public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
     private List<String> subjects;
 
     public SubjectAdapter(List<String> subjects) {
         this.subjects = subjects;
     }
 
-    @NonNull
-    @Override
-    public SubjectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_1, parent, false);
-        return new SubjectViewHolder(view);
+    public void updateSubjects(List<String> newSubjects) {
+        subjects.clear();
+        subjects.addAll(newSubjects);  // Update the list with new subjects
+        notifyDataSetChanged();  // Notify the adapter of the data change
     }
 
+    @NonNull
     @Override
-    public void onBindViewHolder(@NonNull SubjectViewHolder holder, int position) {
-        holder.subjectTextView.setText(subjects.get(position));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subject_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -36,13 +34,20 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         return subjects.size();
     }
 
-    public static class SubjectViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String subject = subjects.get(position);
+        holder.subjectTextView.setText(subject);  // Set the subject text
+    }
 
-        public TextView subjectTextView;
+    // Inside ViewHolder class
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView subjectTextView;
 
-        public SubjectViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            subjectTextView = itemView.findViewById(android.R.id.text1);
+            subjectTextView = itemView.findViewById(R.id.subjectTextView);  // Link the TextView to the layout
         }
     }
 }
+
