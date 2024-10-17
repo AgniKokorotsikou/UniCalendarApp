@@ -18,18 +18,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Math" />
+    <Button
+        android:id="@+id/color_button_math"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Math Color" />
 
     <CheckBox
         android:id="@+id/checkbox_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="History" />
+    <Button
+        android:id="@+id/color_button_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose History Color" />
 
     <CheckBox
         android:id="@+id/checkbox_physics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Physics" />
+    <Button
+        android:id="@+id/color_button_physics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Physics Color" />
 
     <Button
         android:id="@+id/btn_done"
@@ -38,4 +53,21 @@
         android:text="Done"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp" />
+
+    <Spinner
+        android:id="@+id/spinner_repeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:minHeight="48dp"
+        android:background="?attr/selectableItemBackground"
+        android:elevation="4dp" />
+
+    <Button
+        android:id="@+id/color_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Color" />
+
 </LinearLayout>

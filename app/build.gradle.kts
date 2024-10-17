@@ -32,12 +32,13 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.material.calendarview)
     implementation(libs.constraintlayout)
+    implementation(libs.color.picker)
+    implementation(libs.ambilwarna)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
