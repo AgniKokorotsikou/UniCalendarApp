@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +17,14 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class AddSubjectActivity extends AppCompatActivity {
     private TextView timeTextView;  // Display selected time
+    private EditText timeEditText;
+    private TextView descriptionTextView;
     private String selectedTime;
     private String description;
     private CheckBox mathCheckBox, historyCheckBox, physicsCheckBox;
@@ -34,6 +38,10 @@ public class AddSubjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subject);
+
+        // Initialize your views properly
+        timeEditText = findViewById(R.id.timeEditText);  // Ensure this ID matches your XML
+        descriptionTextView = findViewById(R.id.descriptionTextView);  // Ensure this ID matches your XML
 
         // Initialize the checkboxes
         mathCheckBox = findViewById(R.id.checkbox_math);
@@ -59,6 +67,24 @@ public class AddSubjectActivity extends AppCompatActivity {
         timeTextView = findViewById(R.id.timeTextView);
         // Set up a click listener to open the TimePicker dialog when timeTextView is clicked
         timeTextView.setOnClickListener(v -> showTimePickerDialog());
+
+        // Triggering the time picker when a time field is clicked
+        timeEditText.setOnClickListener(v -> {
+            // Get the current time as default values for the picker
+            Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
+
+            // Create a new TimePickerDialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(AddSubjectActivity.this,
+                    (view, hourOfDay, minute1) -> {
+                        // Format the time and set it to the EditText
+                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1);
+                        timeEditText.setText(formattedTime); // Update your time input field with selected time
+                    }, hour, minute, true);
+
+            timePickerDialog.show(); // Show the time picker
+        });
 
         // Handle the "Done" button click
         findViewById(R.id.btn_done).setOnClickListener(v -> {
@@ -90,7 +116,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
             resultIntent.putStringArrayListExtra("selectedSubjects", selectedSubjects);
             resultIntent.putExtra("subjectTime", selectedTime);  // Add the selected time
-//            resultIntent.putExtra("subjectDescription", description);  // Already handled for description
+            resultIntent.putExtra("subjectDescription", description);  // Add description
             setResult(RESULT_OK, resultIntent);
 
             finish();
