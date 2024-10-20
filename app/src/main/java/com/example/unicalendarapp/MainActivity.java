@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private CalendarDay selectedDate;
     private HashMap<CalendarDay, List<String>> subjectMap = new HashMap<>();
     private HashMap<String, Integer> colorMap = new HashMap<String, Integer>();
+    private HashMap<CalendarDay, String> timeMap = new HashMap<>();
+    private HashMap<CalendarDay, String> descriptionMap = new HashMap<>();
 
     // Add request code for adding subjects
     private static final int REQUEST_ADD_SUBJECT = 1;
@@ -104,18 +106,23 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_ADD_SUBJECT && resultCode == RESULT_OK && data != null) {
             ArrayList<String> selectedSubjects = data.getStringArrayListExtra("selectedSubjects");
             String repeatOption = data.getStringExtra("repeatOption"); // Get the repeat option
-//            int selectedColor = data.getIntExtra("selectedColor", Color.BLACK); // Get the chosen color
             HashMap<String, Integer> subjectColors = (HashMap<String, Integer>) data.getSerializableExtra("subjectColors");
+            String time = data.getStringExtra("subjectTime");
+            String description = data.getStringExtra("subjectDescription");
             if (selectedSubjects != null && !selectedSubjects.isEmpty()) {
                 subjectMap.put(selectedDate, new ArrayList<>(selectedSubjects));
 
                 HashSet<CalendarDay> eventDays = new HashSet<>(subjectMap.keySet());
 
-                // Store color and subjects
-//                colorMap.put(selectedDate, selectedColor);
                 // Iterate through the selected subjects to retrieve and store their corresponding colors
                 for (String subject : selectedSubjects) {
                     subjectMap.put(selectedDate, new ArrayList<>(selectedSubjects));
+
+                    timeMap.put(selectedDate, time);  // Add time to timeMap
+                    descriptionMap.put(selectedDate, description);
+
+                    // Update UI with the new data
+//                    loadSubjectsForDate(selectedDate);
 
                     // Ensure colors are retrieved safely
                     if (subjectColors.containsKey(subject)) {
@@ -185,29 +192,8 @@ public class MainActivity extends AppCompatActivity {
             List<String> subjectsForDay = subjectMap.get(day);
             List<Integer> dotColors = getDotColorsForSubjects(subjectsForDay);
             calendarView.addDecorator(new MultiEventDecorator(new MultiDotSpan(dotColors), day)); //it works fine this way
-
-//            int dotColor = colorMap.get(day); // Get the color for the current day
-//            calendarView.addDecorator(new MultiEventDecorator(new MultiDotSpan(Collections.singletonList(dotColor)), day));
         }
     }
-
-
-    // Function to generate dot colors based on subjects
-//    private List<Integer> getDotColorsForSubjects(List<String> subjects) {
-//        List<Integer> colors = new ArrayList<>();
-//        for (String subject : subjects) {
-//            if (subject.contains("Math")) {
-//                colors.add(Color.BLUE);
-//            } else if (subject.contains("History")) {
-//                colors.add(Color.RED);
-//            } else if (subject.contains("Physics")) {
-//                colors.add(Color.GREEN);
-//            } else {
-//                colors.add(Color.BLACK); // Default color
-//            }
-//        }
-//        return colors;
-//    }
 
     private List<Integer> getDotColorsForSubjects(List<String> subjects) {
         List<Integer> dotColors = new ArrayList<>();
@@ -256,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
         }
         subjectAdapter.updateSubjects(subjectsForDate);
     }
+
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
         @Override

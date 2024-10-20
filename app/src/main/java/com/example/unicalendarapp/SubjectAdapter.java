@@ -37,16 +37,35 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String subject = subjects.get(position);
-        holder.subjectTextView.setText(subject);  // Set the subject text
+
+        String time = "";  // Retrieve this from the timeMap (pass this when updating the adapter)
+        String description = "";  // Retrieve this from the descriptionMap
+
+        // Display the time for each subject
+        if (time != null && !time.isEmpty()) {
+            holder.timeTextView.setText("Time: " + time);
+            holder.timeTextView.setVisibility(View.VISIBLE);  // Ensure visibility if time exists
+        } else {
+            holder.timeTextView.setVisibility(View.GONE);  // Hide if no time is set
+        }
+
+        // Display description if available
+        if (description != null && !description.isEmpty()) {
+            holder.descriptionTextView.setText("Description: " + description);
+        } else {
+            holder.descriptionTextView.setVisibility(View.GONE);  // Hide if no description is set
+        }
     }
 
     // Inside ViewHolder class
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView subjectTextView;
+        TextView timeTextView;
+        TextView descriptionTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            subjectTextView = itemView.findViewById(R.id.subjectTextView);  // Link the TextView to the layout
+            timeTextView = itemView.findViewById(R.id.time_text_view);        // Link time TextView
+//            descriptionTextView = itemView.findViewById(R.id.description_text_view);  // Link description TextView
         }
     }
 }

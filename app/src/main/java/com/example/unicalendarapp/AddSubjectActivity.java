@@ -10,13 +10,19 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.TimePickerDialog;
+import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class AddSubjectActivity extends AppCompatActivity {
+    private TextView timeTextView;  // Display selected time
+    private String selectedTime;
+    private String description;
     private CheckBox mathCheckBox, historyCheckBox, physicsCheckBox;
     private Spinner repeatSpinner;
     private Button mathColorButton, historyColorButton, physicsColorButton;
@@ -49,6 +55,11 @@ public class AddSubjectActivity extends AppCompatActivity {
         historyColorButton.setOnClickListener(v -> showColorPicker(false, 1));
         physicsColorButton.setOnClickListener(v -> showColorPicker(false, 2));
 
+        // Initialize the timeTextView
+        timeTextView = findViewById(R.id.timeTextView);
+        // Set up a click listener to open the TimePicker dialog when timeTextView is clicked
+        timeTextView.setOnClickListener(v -> showTimePickerDialog());
+
         // Handle the "Done" button click
         findViewById(R.id.btn_done).setOnClickListener(v -> {
             ArrayList<String> selectedSubjects = new ArrayList<>();
@@ -76,6 +87,12 @@ public class AddSubjectActivity extends AppCompatActivity {
             resultIntent.putExtra("repeatOption", repeatOption);
             resultIntent.putExtra("subjectColors", subjectColors); // Pass the colors map back
             setResult(RESULT_OK, resultIntent);
+
+            resultIntent.putStringArrayListExtra("selectedSubjects", selectedSubjects);
+            resultIntent.putExtra("subjectTime", selectedTime);  // Add the selected time
+//            resultIntent.putExtra("subjectDescription", description);  // Already handled for description
+            setResult(RESULT_OK, resultIntent);
+
             finish();
         });
     }
@@ -99,5 +116,23 @@ public class AddSubjectActivity extends AppCompatActivity {
                 // Do nothing on cancel
             }
         }).show();
+    }
+
+    private void showTimePickerDialog() {
+        // Use Calendar to get the current time
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        // Create a new instance of TimePickerDialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                (view, hourOfDay, minuteOfHour) -> {
+                    // Format the time as HH:mm
+                    selectedTime = String.format("%02d:%02d", hourOfDay, minuteOfHour);
+                    timeTextView.setText(selectedTime);  // Update the TextView with selected time
+                }, hour, minute, true);  // 'true' for 24-hour format, false for AM/PM
+
+        // Show the dialog
+        timePickerDialog.show();
     }
 }
