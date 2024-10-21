@@ -52,9 +52,10 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String subject = subjects.get(position);
-
         String time = "";  // Retrieve this from the timeMap (pass this when updating the adapter)
         String description = "";  // Retrieve this from the descriptionMap
+
+        holder.subjectTextView.setText(subject);  // Set the subject text
 
         // If time is available, show it
         if (time != null && !time.isEmpty()) {

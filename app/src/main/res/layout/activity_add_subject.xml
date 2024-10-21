@@ -3,56 +3,149 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@android:color/white">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Subjects for the Day"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="16dp"
+        android:textColor="#333333" />
 
-    <CheckBox
-        android:id="@+id/checkbox_math"
-        android:layout_width="wrap_content"
+    <!-- Subject Group for Math -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Math" />
-    <Button
-        android:id="@+id/color_button_math"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Math Color" />
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@android:color/holo_blue_bright"
+        android:paddingVertical="16dp"
+        android:layout_marginBottom="8dp">
 
-    <CheckBox
-        android:id="@+id/checkbox_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="History" />
-    <Button
-        android:id="@+id/color_button_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose History Color" />
+        <CheckBox
+            android:id="@+id/checkbox_math"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Math"
+            android:textSize="18sp" />
 
-    <CheckBox
-        android:id="@+id/checkbox_physics"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/color_button_math"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Color"
+                android:textColor="@android:color/black"
+                android:background="?attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btn_time_math"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select Time" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Subject Group for History -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Physics" />
-    <Button
-        android:id="@+id/color_button_physics"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@android:color/holo_green_light"
+        android:paddingVertical="16dp"
+        android:layout_marginBottom="8dp">
+
+        <CheckBox
+            android:id="@+id/checkbox_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="History"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/color_button_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Color"
+                android:textColor="@android:color/black"
+                android:background="?attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btn_time_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select Time" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Subject Group for Physics -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose Physics Color" />
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@android:color/holo_red_light"
+        android:paddingVertical="16dp"
+        android:layout_marginBottom="8dp">
+
+        <CheckBox
+            android:id="@+id/checkbox_physics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Physics"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/color_button_physics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Color"
+                android:textColor="@android:color/black"
+                android:background="?attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btn_time_physics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select Time"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_done"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Done"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp" />
+        android:textColor="@android:color/white"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp" />
 
     <Spinner
         android:id="@+id/spinner_repeat"
@@ -64,43 +157,11 @@
         android:background="?attr/selectableItemBackground"
         android:elevation="4dp" />
 
-    <Button
-        android:id="@+id/color_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select Color" />
-
-    <TextView
-        android:id="@+id/timeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Select Time"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:padding="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="16dp"
-        />
-
-    <!-- EditText for Time -->
-    <EditText
-        android:id="@+id/timeEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Select Time"
-        android:focusable="false"
-        android:clickable="true"
-        android:inputType="none" />
-
-    <!-- TextView for Description -->
     <TextView
         android:id="@+id/descriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description"
+        android:textSize="18sp"
         android:paddingTop="10dp" />
-
-
 </LinearLayout>
