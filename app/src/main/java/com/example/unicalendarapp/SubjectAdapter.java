@@ -7,23 +7,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
     private List<String> subjects;
-    private String time;
+    private HashMap<String, String> subjectTimes; // Add this for subject times
     private String description;
 
     // Constructor to pass in the list of subjects, time, and description
     public SubjectAdapter(List<String> subjects) {
         this.subjects = subjects;
-        this.time = time;
+        this.subjectTimes = subjectTimes;
         this.description = description;
     }
 
-    public void updateSubjects(List<String> newSubjects) {
+    public void updateSubjects(List<String> newSubjects, HashMap<String, String> newTimes) {
         subjects.clear();
         subjects.addAll(newSubjects);  // Update the list with new subjects
+        this.subjectTimes = newTimes;
         notifyDataSetChanged();  // Notify the adapter of the data change
     }
 
@@ -31,7 +33,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
     public void updateSubjectsWithDetails(List<String> newSubjects, String newTime, String newDescription) {
         subjects.clear();
         subjects.addAll(newSubjects);
-        this.time = newTime;
+//        this.time = newTime;
         this.description = newDescription;
         notifyDataSetChanged(); // Refresh adapter with the updated data
     }
@@ -57,12 +59,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
 
         holder.subjectTextView.setText(subject);  // Set the subject text
 
-        // If time is available, show it
-        if (time != null && !time.isEmpty()) {
-            holder.timeTextView.setText("Time: " + time);
-            holder.timeTextView.setVisibility(View.VISIBLE);  // Ensure visibility if time exists
+        // Set the time for the subject if available
+        time = subjectTimes.get(subject);
+        if (time != null) {
+            holder.timeTextView.setText(time);  // Display the associated time
         } else {
-            holder.timeTextView.setVisibility(View.GONE);  // Hide if no time is set
+            holder.timeTextView.setText("No time selected"); // Or some default
         }
 
         // If description is available, show it

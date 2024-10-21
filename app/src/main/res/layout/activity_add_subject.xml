@@ -46,12 +46,16 @@
                 android:textColor="@android:color/black"
                 android:background="?attr/selectableItemBackground" />
 
-            <Button
-                android:id="@+id/btn_time_math"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_time_math"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Select Time" />
+                android:text="Select Time"
+                android:textSize="18sp"
+                android:paddingStart="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
 
         </LinearLayout>
     </LinearLayout>
@@ -87,12 +91,16 @@
                 android:textColor="@android:color/black"
                 android:background="?attr/selectableItemBackground" />
 
-            <Button
-                android:id="@+id/btn_time_history"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_time_history"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Select Time" />
+                android:text="Select Time"
+                android:textSize="18sp"
+                android:paddingStart="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
 
         </LinearLayout>
     </LinearLayout>
@@ -128,12 +136,16 @@
                 android:textColor="@android:color/black"
                 android:background="?attr/selectableItemBackground" />
 
-            <Button
-                android:id="@+id/btn_time_physics"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_time_physics"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Select Time"/>
+                android:text="Select Time"
+                android:textSize="18sp"
+                android:paddingStart="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
 
         </LinearLayout>
     </LinearLayout>
