@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashSet;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private CalendarDay selectedDate;
     private HashMap<CalendarDay, List<String>> subjectMap = new HashMap<>();
     private HashMap<String, Integer> colorMap = new HashMap<String, Integer>();
-    private HashMap<CalendarDay, String> timeMap = new HashMap<>();
+//    private HashMap<CalendarDay, String> timeMap = new HashMap<>();
     private HashMap<CalendarDay, String> descriptionMap = new HashMap<>();
+    private Map<CalendarDay, Map<String, String>> timeMap = new HashMap<>();
+
 
     // Add request code for adding subjects
     private static final int REQUEST_ADD_SUBJECT = 1;
@@ -113,16 +116,28 @@ public class MainActivity extends AppCompatActivity {
             if (selectedSubjects != null && !selectedSubjects.isEmpty()) {
                 subjectMap.put(selectedDate, new ArrayList<>(selectedSubjects));
 
-                HashSet<CalendarDay> eventDays = new HashSet<>(subjectMap.keySet());
+                // Ensure the inner map for the time is initialized
+                if (!timeMap.containsKey(selectedDate)) {
+                    timeMap.put(selectedDate, new HashMap<>());
+                }
+                Map<String, String> timesForDate = timeMap.get(selectedDate);
+
 
                 // Update the timeMap with times for the selected subjects
                 if (subjectTimes != null) {
                     for (String subject : selectedSubjects) {
                         if (subjectTimes.containsKey(subject)) {
-                            timeMap.put(selectedDate, subjectTimes.get(subject));  // Store the time for the subject
+                            timesForDate.put(subject, subjectTimes.get(subject));  // Store the time for the subject
                         }
                     }
                 }
+//                if (subjectTimes != null) {
+//                    for (String subject : selectedSubjects) {
+//                        if (subjectTimes.containsKey(subject)) {
+//                            timeMap.put(selectedDate, subjectTimes.get(subject));  // Store the time for the subject
+//                        }
+//                    }
+//                }
 
                 // Iterate through the selected subjects to retrieve and store their corresponding colors
                 for (String subject : selectedSubjects) {
@@ -243,32 +258,28 @@ public class MainActivity extends AppCompatActivity {
             subjectsForDate = new ArrayList<>();
         }
         // Get the times for the selected date
-        HashMap<String, String> timesForDate = new HashMap<>();
-        for (String subject : subjectsForDate) {
-            String time = timeMap.get(date);  // Assuming timeMap stores times per date
-            if (time != null) {
-                timesForDate.put(subject, time);  // Store the time for each subject
-            }
+        Map<String, String> timesForDate = timeMap.get(date);
+        if (timesForDate == null) {
+            timesForDate = new HashMap<>();
         }
 
-        subjectAdapter.updateSubjects(subjectsForDate, timesForDate);
+        subjectAdapter.updateSubjects(subjectsForDate, (HashMap<String, String>) timesForDate);
     }
 
     // Update RecyclerView with subjects for the selected day
     private void updateSubjectList() {
         List<String> subjectsForDate = subjectMap.get(selectedDate);
-        HashMap<String, String> timesForDate = new HashMap<>();
+        Map<String, String> timesForDate = timeMap.get(selectedDate);
         if (subjectsForDate == null) {
             subjectsForDate = new ArrayList<>();
         }
         // Get the times for the selected date
-        for (String subject : subjectsForDate) {
-            String time = timeMap.get(selectedDate);  // Assuming timeMap stores times per date
-            if (time != null) {
-                timesForDate.put(subject, time);  // Store the time for each subject
-            }
+        // Get the times for the selected date
+        if (timesForDate == null) {
+            timesForDate = new HashMap<>();
         }
-        subjectAdapter.updateSubjects(subjectsForDate, timesForDate);
+
+        subjectAdapter.updateSubjects(subjectsForDate, (HashMap<String, String>) timesForDate);
     }
 
 
