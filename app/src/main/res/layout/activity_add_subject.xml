@@ -176,4 +176,11 @@
         android:text="Description"
         android:textSize="18sp"
         android:paddingTop="10dp" />
+    <EditText
+        android:id="@+id/subject_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter subject description"
+        android:inputType="textMultiLine" />
+
 </LinearLayout>

@@ -22,20 +22,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         this.description = description;
     }
 
-    public void updateSubjects(List<String> newSubjects, HashMap<String, String> newTimes) {
+    public void updateSubjects(List<String> newSubjects, HashMap<String, String> newTimes, String description) {
         subjects.clear();
         subjects.addAll(newSubjects);  // Update the list with new subjects
         this.subjectTimes = newTimes;
+        this.description = description;  // Assuming you have a field to store the description
         notifyDataSetChanged();  // Notify the adapter of the data change
-    }
-
-    // Update the subjects with additional details (time, description)
-    public void updateSubjectsWithDetails(List<String> newSubjects, String newTime, String newDescription) {
-        subjects.clear();
-        subjects.addAll(newSubjects);
-//        this.time = newTime;
-        this.description = newDescription;
-        notifyDataSetChanged(); // Refresh adapter with the updated data
     }
 
     @NonNull

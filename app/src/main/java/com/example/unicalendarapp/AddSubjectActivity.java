@@ -95,6 +95,9 @@ public class AddSubjectActivity extends AppCompatActivity {
 
             // Get the selected repeat option
             String repeatOption = repeatSpinner.getSelectedItem().toString();
+            // Description input
+            EditText descriptionInput = findViewById(R.id.subject_description);
+            String description = descriptionInput.getText().toString();
 
             // Return the selected subjects, repeat option, and colors to MainActivity
             Intent resultIntent = new Intent();
