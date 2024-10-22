@@ -95,7 +95,8 @@ public class AddSubjectActivity extends AppCompatActivity {
 
             // Get the selected repeat option
             String repeatOption = repeatSpinner.getSelectedItem().toString();
-            // Description input
+
+            // Get description from EditText
             EditText descriptionInput = findViewById(R.id.subject_description);
             String description = descriptionInput.getText().toString();
 

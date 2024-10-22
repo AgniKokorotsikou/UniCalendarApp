@@ -7,4 +7,6 @@
     <color name="yellow">#F4B400</color>
     <color name="green">#0F9D58</color>
     <color name="grey">#999999</color>
+    <color name="colorAccent">#999999</color>
+    <color name="colorPrimary">#4285F4</color>
 </resources>

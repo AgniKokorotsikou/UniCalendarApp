@@ -58,14 +58,16 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         } else {
             holder.timeTextView.setText("No time selected"); // Or some default
         }
+        // Set the description
+        holder.descriptionTextView.setText("Description: " + description);
 
         // If description is available, show it
-        if (description != null && !description.isEmpty()) {
-            holder.descriptionTextView.setText("Description: " + description);
-            holder.descriptionTextView.setVisibility(View.VISIBLE);
-        } else {
-            holder.descriptionTextView.setVisibility(View.GONE); // Hide if no description is set
-        }
+//        if (description != null && !description.isEmpty()) {
+//            holder.descriptionTextView.setText("Description: " + description);
+//            holder.descriptionTextView.setVisibility(View.VISIBLE);
+//        } else {
+//            holder.descriptionTextView.setVisibility(View.GONE); // Hide if no description is set
+//        }
     }
 
     // Inside ViewHolder class

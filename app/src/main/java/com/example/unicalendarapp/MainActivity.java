@@ -115,15 +115,11 @@ public class MainActivity extends AppCompatActivity {
             if (selectedSubjects != null && !selectedSubjects.isEmpty()) {
                 subjectMap.put(selectedDate, new ArrayList<>(selectedSubjects));
 
-                // Store description
-                descriptionMap.put(selectedDate, description);
-
                 // Ensure the inner map for the time is initialized
                 if (!timeMap.containsKey(selectedDate)) {
                     timeMap.put(selectedDate, new HashMap<>());
                 }
                 Map<String, String> timesForDate = timeMap.get(selectedDate);
-
 
                 // Update the timeMap with times for the selected subjects
                 if (subjectTimes != null) {
@@ -145,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
                         colorMap.put(subject, color); // Map by subject
                     }
                 }
+
+                // Store description
+                descriptionMap.put(selectedDate, description);
 
                 // Handle the subjects and repeat option here, e.g., add to your subjectMap
                 subjectMap.put(selectedDate, new ArrayList<>(selectedSubjects));
@@ -265,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
         if (subjectsForDate == null) {
             subjectsForDate = new ArrayList<>();
         }
-        // Get the times for the selected date
         // Get the times for the selected date
         if (timesForDate == null) {
             timesForDate = new HashMap<>();
