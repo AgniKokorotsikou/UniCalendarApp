@@ -28,6 +28,7 @@
         android:padding="8dp"
         android:scrollbars="vertical" />
 
+
     <!-- Floating Action Button for adding subjects -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_subject"

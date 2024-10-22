@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rounded_background">
 
-    <!-- Time Picker Text -->
-    <TextView
-        android:id="@+id/time_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time"
-        android:textSize="14sp"
-        android:textColor="#616161"
-        android:layout_marginBottom="4dp"/>
+    <!-- Color Indicator (Small View) -->
+    <View
+        android:id="@+id/colorIndicator"
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"/>
 
-    <!-- Subject Name -->
+    <!-- Subject Title -->
     <TextView
         android:id="@+id/subjectTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="134dp"
         android:layout_height="wrap_content"
-        android:text="Subject Name"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:padding="5dp"/>
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:text="Subject Title"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
 
     <!-- Description Text -->
     <TextView
@@ -34,6 +36,15 @@
         android:textSize="14sp"
         android:textColor="#616161"
         android:layout_marginBottom="4dp"/>
+
+    <!-- Subject Time -->
+    <TextView
+        android:id="@+id/time_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00 AM"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"/>
 
 
 </LinearLayout>

@@ -241,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
     // Load subjects for the selected date
     private void loadSubjectsForDate(CalendarDay date) {
         List<String> subjectsForDate = subjectMap.get(date);
+        HashMap<String, Integer> subjectColors = new HashMap<>();
         String description = descriptionMap.get(date);
 
         if (subjectsForDate == null) {
@@ -252,12 +253,13 @@ public class MainActivity extends AppCompatActivity {
             timesForDate = new HashMap<>();
         }
 
-        subjectAdapter.updateSubjects(subjectsForDate, (HashMap<String, String>) timesForDate, description);
+        subjectAdapter.updateSubjects(subjectsForDate, (HashMap<String, String>) timesForDate, description, colorMap);
     }
 
     // Update RecyclerView with subjects for the selected day
     private void updateSubjectList() {
         List<String> subjectsForDate = subjectMap.get(selectedDate);
+        HashMap<String, Integer> subjectColors = new HashMap<>();
         Map<String, String> timesForDate = timeMap.get(selectedDate);
         String description = descriptionMap.get(selectedDate);
 
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
             timesForDate = new HashMap<>();
         }
 
-        subjectAdapter.updateSubjects(subjectsForDate, (HashMap<String, String>) timesForDate, description);
+        subjectAdapter.updateSubjects(subjectsForDate, (HashMap<String, String>) timesForDate, description, colorMap);
     }
 
 
